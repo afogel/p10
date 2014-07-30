@@ -19,7 +19,7 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
-require 'httparty'
+# require 'httparty'
 require 'twilio-ruby'
 require 'erb'
 

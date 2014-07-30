@@ -8,10 +8,11 @@
   <form>
     <button class="add-contact">Add a new contact!</button>
   </form>
+  <form action="">
+    <input type="text" placeholder="Enter a test text message">
+    <input type="submit" value="Send!">
+  </form>
   <ul>
-  <% @contacts.each do |contact| %>
-    <li><%= contact.first_name %> <%= contact.last_name %></li>
-  <% end %>
   </ul>
   </div>
 </div>

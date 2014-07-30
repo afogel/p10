@@ -19,3 +19,7 @@ get '/users/:id' do
   erb :user
 end
 
+# <% @contacts.each do |contact| %>
+  #   <li><%= contact.first_name %> <%= contact.last_name %></li>
+  # <% end %>
+
