@@ -13,11 +13,14 @@ require 'pathname'
 
 require 'pg'
 require 'active_record'
+require 'active_support'
 require 'logger'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'httparty'
+require 'twilio-ruby'
 require 'erb'
 
 # Some helper constants for path-centric logic
