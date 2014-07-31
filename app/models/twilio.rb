@@ -5,6 +5,8 @@ class TwilioWrapper
     @user_and_message = user_and_message
   end
 
+
+
   def send!
     @user_and_message.each do |user|
       @client.account.messages.create(
