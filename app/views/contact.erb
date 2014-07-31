@@ -1,0 +1,19 @@
+<div class="create-contact">
+  <form action="/contacts" method="post">
+    <input type="text" name="first_name" required placeholder="First name" ><br>
+    <input type="text" name="last_name" required placeholder="Last name" ><br>
+    <input type="email" name="email_address" required placeholder="Enter your email" ><br>
+    <input type="text" name="phone_number" required placeholder="Phone number" ><br>
+    <label>Remind me every</label>
+    <input type="text" name="contact_interval" size="4" required placeholder="e.g. 3">
+    <select name="interval_units">
+      <option value="days">days</option>
+      <option value="weeks">weeks</option>
+      <option value="months">months</option>
+      <option value="years">years</option>
+    </select>
+    <label> starting on</label>
+    <input type="date" name="last_reminder" required><br>
+    <input type="submit" value="Create Account!">
+  </form>
+</div>
