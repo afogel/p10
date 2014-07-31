@@ -13,14 +13,13 @@ post '/' do
 end
 
 post '/texts' do
-  raise "ERROR MOTHERFUCKER"
   @user = User.find(params[:user_id])
+  p "I passed the AR lookup"
   user_and_message = [{ :message => params[:message],
                        :phone_number => @user.phone_number}]
-  raise "ERROR MOTHERFUCKER"
   test_message = TwilioWrapper.new(user_and_message)
-  raise "ERROR MOTHERFUCKER"
+  p "I created a new TwilioWrapper"
   test_message.send!
-  raise "ERROR MOTHERFUCKER"
+  p "I sent a twiliowrapper"
   redirect "/users/#{@user.id}"
 end
