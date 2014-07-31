@@ -15,7 +15,9 @@ post '/users' do
 end
 
 get '/users/:id' do
+  p "I made it to the user profile page"
   if logged_in?
+    p "I'm logged in"
     @user = User.find(params[:id])
     @contacts = @user.contacts
     erb :user
