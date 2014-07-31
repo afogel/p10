@@ -1,6 +1,6 @@
 class Reminder
   def initialize
-    @reminder_queue = {}
+    @reminder_queue = []
   end
   def remind!
     @reminder_queue = find_reminders_to_be_sent
@@ -17,11 +17,12 @@ class Reminder
   end
 
   def format_data_for_sms_class(db_query)
-    formatted_queue = {}
-    db_query.each do |contact|
-      formatted_queue[contact.reminder_message] = contact.user.phone_number
+    db_query.each_with_object([]) do |contact, formatted_queue|
+      user = {}
+      user[:message] = contact.reminder_message
+      user[:phone_number] = contact.user.phone_number
+      formatted_queue << user
     end
-    formatted_queue
   end
 
   def send_reminders(reminder_queue)

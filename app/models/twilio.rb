@@ -6,11 +6,11 @@ class TwilioWrapper
   end
 
   def send!
-    @user_and_message.each do |message, user_number|
+    @user_and_message.each do |user|
       @client.account.messages.create(
         :from => @from,
-        :to => user_number,
-        :body => message
+        :to => user[:phone_number],
+        :body => user[:message]
         )
     end
   end
