@@ -12,6 +12,9 @@
     <input type="submit" value="Send!">
   </form>
   <ul>
+    <% @contacts.each do |contact| %>
+      <li><%= contact.first_name %> <%= contact.last_name %></li>
+    <% end %>
   </ul>
   </div>
 </div>
