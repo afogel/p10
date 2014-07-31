@@ -13,14 +13,3 @@ class CreateContacts < ActiveRecord::Migration
     end
   end
 end
-
-
-# research on twilio and research on background jobs
-# user_contacts = User.find(user_id).contacts
-# user_contacts.where do |contact|
-# if contact.last_reminder - Date.today >= contact.contact_interval
-#   send alert
-#   User.needs_contact_sent
-# end
-
-# User.contacts.where(last_reminder)
