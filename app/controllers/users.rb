@@ -15,9 +15,13 @@ post '/users' do
 end
 
 get '/users/:id' do
-  @user = User.find(params[:id])
-  @contacts = @user.contacts
-  erb :user
+  if logged_in?
+    @user = User.find(params[:id])
+    @contacts = @user.contacts
+    erb :user
+  else
+    redirect '/'
+  end
 end
 
 get '/contacts/new' do
@@ -41,10 +45,6 @@ post '/contacts' do
     @new_contact.save
     redirect "/users/#{current_user.id}"
   else
-    puts "ERRRO MOTHERFUCKER"
+    puts "ERROR MOTHERFUCKER"
   end
 end
-
-
-
-

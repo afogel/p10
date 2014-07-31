@@ -14,8 +14,8 @@ end
 
 post '/texts' do
   @user = User.find(params[:user_id])
-  friend_and_message = { @user.phone_number => params[:message]}
-  test_message = TwilioWrapper.new(friend_and_message)
+  user_and_message = { params[:message] => @user.phone_number}
+  test_message = TwilioWrapper.new(user_and_message)
   test_message.send!
   redirect "/users/#{@user.id}"
 end
