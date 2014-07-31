@@ -5,11 +5,10 @@
     <input type="submit" value="Sign out!">
   </form>
   <div class="main-content">
-  <form>
-    <button class="add-contact">Add a new contact!</button>
-  </form>
-  <form action="">
-    <input type="text" placeholder="Enter a test text message">
+  <a href="/contacts/new"><button class="add-contact">Add a new contact!</button></a>
+  <form action="/texts" method="post">
+    <input type="hidden" name="user_id" value="<%= @user.id %>">
+    <input type="text" placeholder="Enter a test text message" name='message'>
     <input type="submit" value="Send!">
   </form>
   <ul>
