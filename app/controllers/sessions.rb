@@ -15,7 +15,7 @@ post '/sessions' do
   if logged_in?
     redirect "/users/#{@user.id}"
   else
-    flash[:error] = "Password and/or email incorrect"
+    # flash[:error] = "Password and/or email incorrect"
     redirect '/sessions/new'
   end
 end

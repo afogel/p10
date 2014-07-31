@@ -19,11 +19,3 @@ post '/texts' do
   test_message.send!
   redirect "/users/#{@user.id}"
 end
-
-get '/contacts/new' do
-  erb :contact
-end
-
-post '/contacts' do
-
-end

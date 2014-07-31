@@ -16,13 +16,35 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-
+  @contacts = @user.contacts
   erb :user
+end
+
+get '/contacts/new' do
+  erb :contact
+end
+
+post '/contacts' do
+  contact_interval = params[:contact_interval].to_i
+  .send(params[:interval_units]).to_i.
+  seconds_to_days
+  p contact_interval
+  @new_contact = Contact.new(first_name: params[:first_name],
+                             last_name: params[:last_name],
+                             phone_number: params[:phone_number],
+                             email_address: params[:email_address],
+                             user_id: current_user.id,
+                             contact_interval: contact_interval,
+                             last_reminder: params[:last_reminder],
+                             reminder_message: params[:reminder_message])
+  if @new_contact.valid?
+    @new_contact.save
+    redirect "/users/#{current_user.id}"
+  else
+    puts "ERRRO MOTHERFUCKER"
+  end
 end
 
 
 
-# <% @contacts.each do |contact| %>
-  #   <li><%= contact.first_name %> <%= contact.last_name %></li>
-  # <% end %>
 
