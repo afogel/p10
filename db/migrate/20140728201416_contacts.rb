@@ -6,7 +6,7 @@ class Contacts < ActiveRecord::Migration
       t.string  :phone_number
       t.string  :email_address
       t.integer :user_id
-      t.integer :contact_interval, default: 30.days
+      t.date    :contact_interval, default: 30.days
       t.date    :last_reminder, default: Date.today
 
       t.timestamps
