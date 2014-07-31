@@ -10,11 +10,14 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
+require 'yaml'
 
 require 'pg'
 require 'active_record'
 require 'active_support'
 require 'logger'
+require 'sidekiq'
+require 'whenever'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
@@ -27,6 +30,14 @@ require 'erb'
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
 APP_NAME = APP_ROOT.basename.to_s
+
+if development?
+  path = File.join(APP_ROOT,"config/twilio.yml")
+  twilio_config = YAML.load(File.read(path))
+  ENV['TWILIO_FROM'] = twilio_config['from']
+  ENV['TWILIO_SID'] = twilio_config['sid']
+  ENV['TWILIO_TOKEN'] = twilio_config['token']
+end
 
 configure do
   # By default, Sinatra assumes that the root is the file that calls the configure block.
@@ -41,8 +52,10 @@ configure do
 end
 
 # Set up the controllers and helpers
-Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
-Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
+%w[controllers helpers models].each do |folder|
+  Dir[APP_ROOT.join('app', folder, '*.rb')].each { |file| require file }
+
+end
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
