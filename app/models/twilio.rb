@@ -1,15 +1,15 @@
 class TwilioWrapper
-  def initialize(friend_and_message = {})
+  def initialize(user_and_message = {})
     @client = Twilio::REST::Client.new(ENV['TWILIO_SID'], ENV['TWILIO_TOKEN'])
     @from = ENV['TWILIO_FROM']
-    @friend_and_message = friend_and_message
+    @user_and_message = user_and_message
   end
 
   def send!
-    @friend_and_message.each do |contact_number, message|
+    @user_and_message.each do |message, user_number|
       @client.account.messages.create(
         :from => @from,
-        :to => contact_number,
+        :to => user_number,
         :body => message
         )
     end

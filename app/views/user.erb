@@ -1,9 +1,12 @@
 <div>
   <h3>Welcome, <%= @user.first_name %>!</h3>
+  <nav>
   <form action="/sessions/<%=@user.id%>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Sign out!">
   </form>
+  <a href="/user/new"><button class="edit-profile">Edit profile!</button></a>
+  </nav>
   <div class="main-content">
   <a href="/contacts/new"><button class="add-contact">Add a new contact!</button></a>
   <form action="/texts" method="post">

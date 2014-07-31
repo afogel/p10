@@ -1,0 +1,35 @@
+class Reminder
+  def initialize
+    @reminder_queue = {}
+  end
+  def remind!
+    @reminder_queue = find_reminders_to_be_sent
+    send_reminders(@reminder_queue)
+    clear_reminder_queue!
+  end
+
+  private
+  def find_reminders_to_be_sent
+    db_query = Contact.select(:contact_interval, :last_reminder) do |c|
+      Date.today - c.last_reminder >= c.contact_interval
+    end
+    format_data_for_sms_class(db_query)
+  end
+
+  def format_data_for_sms_class(db_query)
+    formatted_queue = {}
+    db_query.each do |contact|
+      formatted_queue[contact.reminder_message] = contact.user.phone_number
+    end
+    formatted_queue
+  end
+
+  def send_reminders(reminder_queue)
+    messages = TwilioWrapper.new(reminder_queue)
+    messages.send!
+  end
+
+  def clear_reminder_queue!
+    @reminder_queue.clear
+  end
+end
