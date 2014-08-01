@@ -1,3 +1,5 @@
+require_relative 'config/environment.rb'
+
 class Reminder
   def initialize
     @reminder_queue = []
@@ -34,3 +36,6 @@ class Reminder
     @reminder_queue.clear
   end
 end
+
+
+Reminder.new.remind!
