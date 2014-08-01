@@ -1,0 +1,15 @@
+<div class="main-content">
+  <div id="create-account">
+    <form action="/users" method="post">
+      <input type="hidden" name="_method" value="PUT">
+      <input type="text" name="username" required value="<%= current_user.username %>"><br>
+      <input type="password" name="password" required placeholder="Password" ><br>
+      <!-- <input type="password" name="password" required placeholder="Confirm your password" ><br> -->
+      <input type="text" name="first_name" required value="<%= current_user.first_name %>" ><br>
+      <input type="text" name="last_name" required value="<%= current_user.last_name %>" ><br>
+      <input type="email" name="email_address" required value="<%= current_user.email_address %>" ><br>
+      <input type="text" name="phone_number" required value="<%= current_user.phone_number %>" ><br>
+      <input type="submit" value="Update Account!">
+    </form>
+  </div>
+</div>
